@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -21,8 +22,8 @@ public class SocketServer {
 
 	private int port;
 
-	private static ExecutorService executorService = new ThreadPoolExecutor(5, 5, 0L, TimeUnit.MILLISECONDS,
-			new ArrayBlockingQueue<Runnable>(4096));
+	private static ExecutorService executorService = new ThreadPoolExecutor(5, 15, 1L, TimeUnit.SECONDS,
+			new LinkedBlockingQueue<Runnable>(4096));
 
 	public SocketServer(int port) {
 		this.port = port;
